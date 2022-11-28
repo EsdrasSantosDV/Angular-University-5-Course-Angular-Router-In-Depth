@@ -4,15 +4,18 @@
 
     <div class="toolbar-tools">
 
-      <a class="menu-item" mat-button>
+      <a class="menu-item" mat-button >
         <span>Courses</span>
       </a>
 
-      <a class="menu-item" mat-button>
+<!--      router link active coloca a classe css quando essa rota esta ativa-->
+
+<!--      ESSAS DUAS NOTAÇOES SÃO EQUIVALENTES [routerLink]="'about'"  routerLink="about"-->
+      <a class="menu-item" mat-button routerLink="/about" routerLinkActive="menu-item-active">
         <span>About</span>
       </a>
 
-      <a mat-button class="menu-item">
+      <a mat-button class="menu-item" routerLink="/login" routerLinkActive="menu-item-active">
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a>
@@ -44,6 +47,9 @@
   <messages></messages>
 
   <loading></loading>
+
+<!--  ESTAMMOS DIZENDO PRO ANGULAR ONDE VAI SER PRENCHEIDO E RENDEZERIZADO COM BASE NO ESTADO ATUAL DO ROTEADOR-->
+  <router-outlet></router-outlet>
 
 </mat-sidenav-container>
 
