@@ -15,14 +15,14 @@ export class CoursesService {
     }
 
     loadCourseByUrl(courseUrl:string) {
-       return this.http.get<Course>(`/api/courses/${courseUrl}`)
+       return this.http.get<Course>(`http://localhost:9000/api/courses/${courseUrl}`)
             .pipe(
               shareReplay()
             );
     }
 
     loadAllCourseLessonsSummary(courseUrl:string): Observable<LessonSummary[]> {
-        return this.http.get<LessonSummary[]>('/api/lessons', {
+        return this.http.get<LessonSummary[]>('http://localhost:9000/api/lessons', {
             params: {
                 pageSize: "10000",
                 courseUrl
@@ -35,7 +35,7 @@ export class CoursesService {
     }
 
     loadAllCourses(): Observable<Course[]> {
-        return this.http.get<Course[]>("/api/courses")
+        return this.http.get<Course[]>('http://localhost:9000/api/courses')
             .pipe(
                 map(res => res["payload"]),
                 shareReplay()
@@ -44,7 +44,7 @@ export class CoursesService {
 
 
     saveCourse(courseId:string, changes: Partial<Course>):Observable<any> {
-        return this.http.put(`/api/courses/${courseId}`, changes)
+        return this.http.put(`http://localhost:9000/api/courses/${courseId}`, changes)
             .pipe(
                 shareReplay()
             );
@@ -52,7 +52,7 @@ export class CoursesService {
 
 
     searchLessons(search:string): Observable<LessonSummary[]> {
-        return this.http.get<LessonSummary[]>('/api/lessons', {
+        return this.http.get<LessonSummary[]>('http://localhost:9000/api/lessons', {
             params: {
                 filter: search,
                 pageSize: "100"
@@ -66,7 +66,7 @@ export class CoursesService {
 
 
   loadLessonDetail(courseUrl: string, lessonSeqNo: string):Observable<LessonDetail> {
-    return this.http.get<LessonDetail>(`/api/lesson-details`, {
+    return this.http.get<LessonDetail>(`http://localhost:9000/api/lesson-details`, {
       params: {
         courseUrl,
         lessonSeqNo
