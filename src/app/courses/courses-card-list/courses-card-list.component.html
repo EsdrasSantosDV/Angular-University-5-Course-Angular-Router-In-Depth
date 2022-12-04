@@ -15,7 +15,9 @@
 
     <mat-card-actions class="course-actions">
 
-        <button mat-button class="mat-raised-button mat-primary">
+<!--        FAZEMOS UMA INPUT PROPERTY SINTAXE PRA PEGAR A URL-->
+<!--      PASSAMOS UM ARRAY, CASO TENHA MULTIPLAS ENTRADAS, POSSIVEIS ROUTAS FILHAS -->
+        <button mat-button class="mat-raised-button mat-primary" [routerLink]="[course.url]">
             VIEW COURSE
         </button>
 

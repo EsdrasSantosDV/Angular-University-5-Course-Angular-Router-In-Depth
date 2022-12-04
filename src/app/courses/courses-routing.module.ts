@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
+import {CourseComponent} from './course/course.component';
 
 
 const routes: Routes = [
@@ -10,6 +11,12 @@ const routes: Routes = [
     //PÓR ISSO COLOCAMOS SEM NADA
     path:"",
     component:HomeComponent
+  },
+  {
+    //VAMOS ADICIONAR UMA VARIAVEL PATH
+    //ROUTER PATH VARIABLE
+    path:":courseUrl",
+    component:CourseComponent
   }
 ];
 
