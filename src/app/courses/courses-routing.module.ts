@@ -2,6 +2,7 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import {HomeComponent} from './home/home.component';
 import {CourseComponent} from './course/course.component';
+import {CourseResolver} from './services/course.resolver';
 
 
 const routes: Routes = [
@@ -16,7 +17,11 @@ const routes: Routes = [
     //VAMOS ADICIONAR UMA VARIAVEL PATH
     //ROUTER PATH VARIABLE
     path:":courseUrl",
-    component:CourseComponent
+    component:CourseComponent,
+    resolve:{
+        //CRIAMOS UM RESOLVER PRA CADA PROPRIEDADE DO NOSSO COMPONENT
+        course:CourseResolver
+    },
   }
 ];
 
@@ -30,7 +35,9 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
-
+    //PROVEMOS O ROUTER RESOLVER COMO SERVIÇO DESSE MODULO
+    //E O QUE FAZEMOS PARA DISTINGUIR ESSEE SERVIÇO DE OUTROS SERVIÇOS DA NOSSA APLICAÇÃO
+    CourseResolver
   ]
 })
 export class CoursesRoutingModule {
