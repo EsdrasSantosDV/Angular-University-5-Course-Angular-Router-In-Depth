@@ -22,6 +22,7 @@ export class CourseComponent implements OnInit {
 
     ngOnInit() {
       //O RESOLVER VAI TRABALHAR POR DEBAIXO DOS PANOS
+
       this.course=this.route.snapshot.data["course"];
 
     }
