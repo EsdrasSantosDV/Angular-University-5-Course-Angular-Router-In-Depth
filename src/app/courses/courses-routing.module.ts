@@ -5,6 +5,8 @@ import {CourseComponent} from './course/course.component';
 import {CourseResolver} from './services/course.resolver';
 import {LessonDetailComponent} from './lesson/lesson-detail.component';
 import {LessonsListComponent} from './lessons-list/lessons-list.component';
+import {LessonsResolver} from './services/lessons.resolver';
+import {LessonDetailResolver} from './services/lesson-detail.resolver';
 
 
 const routes: Routes = [
@@ -24,11 +26,18 @@ const routes: Routes = [
     children:[
       {
         path:"",
-        component:LessonsListComponent
+        component:LessonsListComponent,
+        resolve:{
+          lessons:LessonsResolver
+        }
       },
       {
         path:"lessons/:lessonSeqNo",
-        component:LessonDetailComponent
+        component:LessonDetailComponent,
+        resolve:{
+          lesson:LessonDetailResolver
+        }
+
       }
     ],
     resolve:{
@@ -50,7 +59,10 @@ const routes: Routes = [
   providers: [
     //PROVEMOS O ROUTER RESOLVER COMO SERVIÇO DESSE MODULO
     //E O QUE FAZEMOS PARA DISTINGUIR ESSEE SERVIÇO DE OUTROS SERVIÇOS DA NOSSA APLICAÇÃO
-    CourseResolver
+    CourseResolver,
+    LessonsResolver,
+    LessonDetailResolver
+
   ]
 })
 export class CoursesRoutingModule {
