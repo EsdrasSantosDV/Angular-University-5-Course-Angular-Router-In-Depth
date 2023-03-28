@@ -30,6 +30,10 @@ const routes: Routes = [
     //VAI CARREGAR OS COMPONENTES SOBRE DEMANDA
     loadChildren:()=> import('./courses/courses.module').then(m=>m.CoursesModule)
   },
+  {
+    path:"principal",
+    loadChildren:()=> import('./testerotasstand/testeprimeira.module').then(m=>m.TesteprimeiraModule)
+  },
   //CONFIGURAÇÃO DAS ROTAS
   {
     //PROPOSITO E MAPEAR AS ROTAS AQUI
@@ -42,6 +46,7 @@ const routes: Routes = [
     path:"about",
     component:AboutComponent
   },
+
   {
     //PAGINA NÃO ENCONTRADA
     //PATH PEGA TODAS QUE NÃO TA MAPEADA AQUI
@@ -50,7 +55,7 @@ const routes: Routes = [
     component:PageNotFoundComponent
   },
 
-
+ 
 
 ];
 
