@@ -11,7 +11,7 @@ import {map} from "rxjs/operators";
 })
 export class LessonDetailComponent implements OnInit {
 
-  lesson:LessonDetail;
+  lesson$:Observable<LessonDetail>;
 
   constructor(private route:ActivatedRoute,private router:Router) {
 
@@ -20,7 +20,17 @@ export class LessonDetailComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.lesson= this.route.snapshot.data["lesson"];
+    //O IDEAL E NOS USARMOS UM OBSERVABLE, QUE TEM COMO FONTE A ROTA
+    //E FAZEMOS UM OBSERVADOR PRO DATA QUE FICA EMITINDO NOTIFICAÇOES NOVAS
+    this.lesson$=this.route.data.pipe(map(data=> data["lesson"]))
+
+
+    //TEMOS UM PROBLEMA COM O INSTANTENEO PRA FAZER A LOGICA
+    //DE PASSAR PRA PROXIMA LIÇÃO
+    //O SNAPSHOT DATA, PEGA O PRIMEIRO VALOR EMITIDO PELO RESOLVER
+    //PRA GENTE REUTILIZAR O COMPONENTE VARIAS VEZES, COM O INSTANTENEO NÃO VAI FUNCIONAR
+    //ELE  E COMO SE TIVESSE TIRANDO FOTO DO ESTADO DO DATA NO MOMENTO DA INCIIALIZAÇÃO DO COMPOENNTE    
+    //this.lesson= this.route.snapshot.data["lesson"];
   }
 
 

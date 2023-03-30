@@ -5,7 +5,7 @@
 <!--QUYRO VOLTAR PRA ANGULAR-ROUTER-COURSE ENTÃO '../..' -->
 <!--http://localhost:4200/courses/angular-router-course/lessons/1-->
 
-<div class="lesson-detail" >
+<div class="lesson-detail" *ngIf="(lesson$ | async) as lesson" >
 
     <h3>{{lesson.description}}</h3>
 
