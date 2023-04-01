@@ -7,6 +7,7 @@ import {LessonDetailComponent} from './lesson/lesson-detail.component';
 import {LessonsListComponent} from './lessons-list/lessons-list.component';
 import {LessonsResolver} from './services/lessons.resolver';
 import {LessonDetailResolver} from './services/lesson-detail.resolver';
+import { AuthGuard } from '../services/auth.guard';
 
 
 const routes: Routes = [
@@ -22,6 +23,9 @@ const routes: Routes = [
     //ROUTER PATH VARIABLE
     path:":courseUrl",
     component:CourseComponent,
+    //PODEMOS TER VARIOS AUTHENTICATION, MAS E OUTRA FORMA DE FAZER AQUI
+    //PQ EXISTE UMA ORDEM DE AUTH GUARD
+    canActivate:[AuthGuard],
     //VAMOS COLOCAR ALGUMAS ROTAS FILHAS
     children:[
       {
@@ -61,7 +65,9 @@ const routes: Routes = [
     //E O QUE FAZEMOS PARA DISTINGUIR ESSEE SERVIÇO DE OUTROS SERVIÇOS DA NOSSA APLICAÇÃO
     CourseResolver,
     LessonsResolver,
-    LessonDetailResolver
+    LessonDetailResolver,
+    //PRECISAMOS PROVER NOSSO AUTH GUARD
+    AuthGuard
 
   ]
 })

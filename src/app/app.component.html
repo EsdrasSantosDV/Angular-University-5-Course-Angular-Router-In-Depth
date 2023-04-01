@@ -1,60 +1,74 @@
 <mat-sidenav-container fullscreen>
-
   <mat-toolbar color="primary">
-
     <div class="toolbar-tools">
-
-      <a class="menu-item" mat-button routerLink="/courses" routerLinkActive="menu-item-active" >
+      <a
+        class="menu-item"
+        mat-button
+        routerLink="/courses"
+        routerLinkActive="menu-item-active"
+      >
         <span>Courses</span>
       </a>
 
-<!--      router link active coloca a classe css quando essa rota esta ativa-->
+      <!--      router link active coloca a classe css quando essa rota esta ativa-->
 
-<!--      ESSAS DUAS NOTAÇOES SÃO EQUIVALENTES [routerLink]="'about'"  routerLink="about"-->
-      <a class="menu-item" mat-button routerLink="/about" routerLinkActive="menu-item-active">
+      <!--      ESSAS DUAS NOTAÇOES SÃO EQUIVALENTES [routerLink]="'about'"  routerLink="about"-->
+      <a
+        class="menu-item"
+        mat-button
+        routerLink="/about"
+        routerLinkActive="menu-item-active"
+      >
         <span>About</span>
       </a>
 
-      <a mat-button class="menu-item" routerLink="/login" routerLinkActive="menu-item-active">
+      <a
+        mat-button
+        class="menu-item"
+        routerLink="/login"
+        *ngIf="auth.isLoggedOut$ | async"
+        routerLinkActive="menu-item-active"
+      >
         <mat-icon>account_circle</mat-icon>
         <span>Login</span>
       </a>
 
-      <a mat-button class="menu-item" routerLink="/principal" routerLinkActive="menu-item-active">
+      <a
+        mat-button
+        class="menu-item"
+        routerLink="/principal"
+        routerLinkActive="menu-item-active"
+      >
         <mat-icon>face</mat-icon>
         <span>Principal</span>
       </a>
-
     </div>
 
     <a mat-button class="menu-item" *ngIf="auth.isLoggedIn$ | async">
       <mat-icon>help</mat-icon>
     </a>
 
-    <a mat-button class="menu-item" (click)="logout()" *ngIf="auth.isLoggedIn$ | async">
+    <a
+      mat-button
+      class="menu-item"
+      (click)="logout()"
+      *ngIf="auth.isLoggedIn$ | async"
+    >
       <mat-icon>exit_to_app</mat-icon>
       <span>Logout</span>
     </a>
 
-
     <div class="filler"></div>
 
-    <ng-container *ngIf="(auth.user$ | async) as user">
-
-      <img class="profile-picture" [src]="user.pictureUrl">
-
+    <ng-container *ngIf="auth.user$ | async as user">
+      <img class="profile-picture" [src]="user.pictureUrl" />
     </ng-container>
-
-
-
   </mat-toolbar>
 
   <messages></messages>
 
   <loading [detectRoutingOngoing]="true"></loading>
 
-<!--  ESTAMMOS DIZENDO PRO ANGULAR ONDE VAI SER PRENCHEIDO E RENDEZERIZADO COM BASE NO ESTADO ATUAL DO ROTEADOR-->
+  <!--  ESTAMMOS DIZENDO PRO ANGULAR ONDE VAI SER PRENCHEIDO E RENDEZERIZADO COM BASE NO ESTADO ATUAL DO ROTEADOR-->
   <router-outlet></router-outlet>
-
 </mat-sidenav-container>
-

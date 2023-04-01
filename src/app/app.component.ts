@@ -10,6 +10,7 @@ import {AuthStore} from './services/auth.store';
 })
 export class AppComponent implements  OnInit {
 
+  //PODEMOS VER QUE E PUBLICO, PQ PRECISAMSO ACESSAR LA NO TEMPLATE
     constructor(public auth: AuthStore) {
 
     }
