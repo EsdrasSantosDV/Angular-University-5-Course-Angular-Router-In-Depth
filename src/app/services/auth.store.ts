@@ -33,7 +33,8 @@ export class AuthStore {
         //ELE VAI GUARDAR O ESTADO DE LOGIN E LOGOUT
         this.isLoggedOut$ = this.isLoggedIn$.pipe(map(loggedIn => !loggedIn));
 
-        
+        //TEMOS AQUI TBM SE TIVER ARMAZENADO NO LOCAL STORE
+        //JA MANDAMOS PRO RESTNATE DA APLICAÇÃO O USUARIO LOGADO
         const user = localStorage.getItem(AUTH_DATA);
 
         if (user) {
@@ -47,6 +48,7 @@ export class AuthStore {
             .pipe(
                 tap(user => {
                     this.subject.next(user);
+                    //ja mandamos pro restante e ja setamos no local storage
                     localStorage.setItem(AUTH_DATA, JSON.stringify(user));
                 }),
                 shareReplay()
