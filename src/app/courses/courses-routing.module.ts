@@ -8,6 +8,7 @@ import {LessonsListComponent} from './lessons-list/lessons-list.component';
 import {LessonsResolver} from './services/lessons.resolver';
 import {LessonDetailResolver} from './services/lesson-detail.resolver';
 import { AuthGuard } from '../services/auth.guard';
+import { ConfirmExitGuard } from '../services/confirm-exit.guard';
 
 
 const routes: Routes = [
@@ -29,6 +30,10 @@ const routes: Routes = [
     //ISSO AQUI PROTEGE AS ROTAS FILHAS
     //TORNANDO ELAS PROTEGIDAS
     canActivateChild:[AuthGuard],
+    canDeactivate:[ConfirmExitGuard],
+    //LEMBRA QUE E SO SE SAIR DO /COURSES, pro can deactivate
+    //não precisamos ficar pensando em implementaçãp pras rotas filhas
+    
     //VAMOS COLOCAR ALGUMAS ROTAS FILHAS
     children:[
       {
@@ -70,7 +75,9 @@ const routes: Routes = [
     LessonsResolver,
     LessonDetailResolver,
     //PRECISAMOS PROVER NOSSO AUTH GUARD
-    AuthGuard
+    AuthGuard,
+    ConfirmExitGuard
+    //precisa colocar tbm no serviço de injecao de dependencia do angular
 
   ]
 })

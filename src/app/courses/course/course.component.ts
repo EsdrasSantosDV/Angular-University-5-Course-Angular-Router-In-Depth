@@ -27,6 +27,10 @@ export class CourseComponent implements OnInit {
 
     }
 
+    confirmExit():boolean{
+      return confirm(`Quer sair do do curso ${this.course.description}`);
+    }
+
 
 }
 
