@@ -26,6 +26,9 @@ const routes: Routes = [
     //PODEMOS TER VARIOS AUTHENTICATION, MAS E OUTRA FORMA DE FAZER AQUI
     //PQ EXISTE UMA ORDEM DE AUTH GUARD
     canActivate:[AuthGuard],
+    //ISSO AQUI PROTEGE AS ROTAS FILHAS
+    //TORNANDO ELAS PROTEGIDAS
+    canActivateChild:[AuthGuard],
     //VAMOS COLOCAR ALGUMAS ROTAS FILHAS
     children:[
       {

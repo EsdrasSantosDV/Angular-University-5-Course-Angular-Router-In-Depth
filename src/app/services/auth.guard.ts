@@ -11,8 +11,7 @@ import { Observable } from "rxjs";
 import { map } from "rxjs/operators";
 import { AuthStore } from "./auth.store";
 
-
-//SO QUE ESSA IMPLEMENTAÇÃO NÃO PERMITE O CAN ACTIVATE PRAS ROTAS FILHAS 
+//SO QUE ESSA IMPLEMENTAÇÃO NÃO PERMITE O CAN ACTIVATE PRAS ROTAS FILHAS
 //SE UM PASSAR DE UM ESTAGIO DA ROTA PAI QUE TA COM CANACTIVATE
 //EU AINDA POSSO PASSAR PRAS ROTAS FILHAS AINDA
 //ENTÃO AS ROTAS FILHAS NÃO ESTAO PROTEGIDAS
@@ -31,10 +30,24 @@ export class AuthGuard implements CanActivate {
     route: ActivatedRouteSnapshot,
     state: RouterStateSnapshot
   ): Observable<boolean | UrlTree> {
+    return this.checkIfAuthenticated();
+  }
 
-   return this.authStore.isLoggedIn$.pipe(
-    //SE NÃO TIVER LOGADO VAI PRA PAGINA DE LOGIN
-      map((loggedIn) => (loggedIn? true : this.router.parseUrl("/login")))
+
+
+  //ISSO AQUI VAI PERMITIR O GUARD PRAS ROTAS FILHAS, MAS LEMBRA DE COLOCAR 
+  //LA NO ROUTING
+  canActivateChild(
+    route: ActivatedRouteSnapshot,
+    state: RouterStateSnapshot
+  ): Observable<boolean | UrlTree> {
+    return this.checkIfAuthenticated();
+  }
+
+  checkIfAuthenticated() {
+    return this.authStore.isLoggedIn$.pipe(
+      //SE NÃO TIVER LOGADO VAI PRA PAGINA DE LOGIN
+      map((loggedIn) => (loggedIn ? true : this.router.parseUrl("/login")))
     );
   }
 }
