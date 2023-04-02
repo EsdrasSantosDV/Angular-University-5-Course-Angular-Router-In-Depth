@@ -3,6 +3,7 @@ import {Routes, RouterModule, PreloadAllModules, UrlSerializer} from '@angular/r
 import {LoginComponent} from './login/login.component';
 import {AboutComponent} from './about/about.component';
 import {PageNotFoundComponent} from './page-not-found/page-not-found.component';
+import { CanLoadAuthGuard } from './services/can-load-auth.guard';
 
 
 const routes: Routes = [
@@ -28,7 +29,14 @@ const routes: Routes = [
     //CARREGAMENTO PREGUIÇOSO LAZY LOADING JEITO IDEAL
     //CARREGA SOBRE DEMANDA, AO INVES DE CARREGAR TUDO NA INIICIALIZAÇÃO DA PAGINA
     //VAI CARREGAR OS COMPONENTES SOBRE DEMANDA
-    loadChildren:()=> import('./courses/courses.module').then(m=>m.CoursesModule)
+
+    //O CAN LOAD E APLICADO
+    //EM LAZY LOADING
+    //SO VAI SER CARREGADO ESSE MODULO
+    //SE ESTIVER AUTHENTICADO
+   
+    loadChildren:()=> import('./courses/courses.module').then(m=>m.CoursesModule),
+    canLoad:[CanLoadAuthGuard]
   },
   {
     path:"principal",
@@ -65,6 +73,7 @@ const routes: Routes = [
   ],
   exports: [RouterModule],
   providers: [
+    CanLoadAuthGuard
 
   ]
 })

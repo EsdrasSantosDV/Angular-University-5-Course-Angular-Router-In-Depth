@@ -33,7 +33,7 @@ const routes: Routes = [
     canDeactivate:[ConfirmExitGuard],
     //LEMBRA QUE E SO SE SAIR DO /COURSES, pro can deactivate
     //não precisamos ficar pensando em implementaçãp pras rotas filhas
-    
+
     //VAMOS COLOCAR ALGUMAS ROTAS FILHAS
     children:[
       {
